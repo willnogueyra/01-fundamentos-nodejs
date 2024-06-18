@@ -9,13 +9,14 @@ export const routes = [
         method: 'GET',
         path: buildRoutePath('/users'),
         handler: (request, response ) => {
+            console.log(request.query)
             const users = database.select('users')
 
             return response.end(JSON.stringify(users))
         }
     },
     {
-        method: 'POST',
+        method: 'POST', // Request body
         path: buildRoutePath('/users'),
         handler: (request, response ) => {
             const { name, email } = request.body
@@ -47,7 +48,7 @@ export const routes = [
         }
     },
     {
-        method: 'DELETE',
+        method: 'DELETE',  // Route parameters
         path: buildRoutePath('/users/:id'),
         handler: (request, response) => {
             const { id } = request.params
